@@ -34,62 +34,69 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // create shape
 var geometry = new THREE.CubeGeometry(0.5, 0.5, 0.5);
+var skyGeometry = new THREE.CubeGeometry(100, 100, 100);
 
 // create material, color, image texture
 
-var cubeMaterials = [
+var materials = [
     new THREE.MeshLambertMaterial(
         {
             //right
-            map: new THREE.TextureLoader().load('images/img1.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_lf.png'),
+            side: THREE.BackSide
         }
     ),
     new THREE.MeshLambertMaterial(
         {
             //left
-            map: new THREE.TextureLoader().load('images/img2.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_rt.png'),
+            side: THREE.BackSide
         }
     ),
     new THREE.MeshLambertMaterial(
         {
             // top
-            map: new THREE.TextureLoader().load('images/img3.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_up.png'),
+            side: THREE.BackSide
         }
     ),
     new THREE.MeshLambertMaterial(
         {
             // bottom
-            map: new THREE.TextureLoader().load('images/img4.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_dn.png'),
+            side: THREE.BackSide
         }
     ),
     new THREE.MeshLambertMaterial(
         {
             // front
-            map: new THREE.TextureLoader().load('images/img5.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_ft.png'),
+            side: THREE.BackSide
         }
     ),
     new THREE.MeshLambertMaterial(
         {
             // back
-            map: new THREE.TextureLoader().load('images/img6.jpg'),
-            side: THREE.FrontSide
+            map: new THREE.TextureLoader().load('images/sky/greenhaze_bk.png'),
+            side: THREE.BackSide
         }
     )
 ]
 
-// var material = new THREE.MeshLambertMaterial(
-//     {
-//         color: 0xffff00,
-//         wireframe: false
-//     })
-var material = new THREE.MeshFaceMaterial(cubeMaterials)
+var materialCube = new THREE.MeshLambertMaterial(
+    {
+        color: 0xffff00,
+        wireframe: false
+    })
+
+var skyMaterial = new THREE.MeshFaceMaterial(materialCube)
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
+
+var material = new THREE.MeshFaceMaterial(material)
+var sky = new THREE.Mesh(skyGeometry, skyMaterial);
+scene.add(cube);
+
 
 var floorGeometry = new THREE.CubeGeometry(5, 2, 5);
 var floorMaterial = new THREE.MeshPhongMaterial({
@@ -97,7 +104,7 @@ var floorMaterial = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide});
 var floor = new THREE.Mesh(floorGeometry, floorMaterial);
 scene.add(floor)
-floor.position.y = 0.75;
+floor.position.y = 0.70;
 
 camera.position.z = 1;
 
@@ -125,7 +132,7 @@ scene.add(spotLight);
 // game logic
 var update = function(){
     // cube.rotation.x += 0.00;
-    cube.rotation.y += .01;
+    // cube.rotation.y += .01;
 
     var time = Date.now() * 0.005;
     // light1.position.x = Math.sin(time * 0.7) * 30;
