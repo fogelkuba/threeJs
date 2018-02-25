@@ -5,6 +5,13 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+window.addEventListener('resize', ()=> {
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect= width / height;
+    camera.updateProjectionMatrix();
+})
 
 // create shape
 var geometry = new THREE.SphereGeometry(1, 25, 25);
