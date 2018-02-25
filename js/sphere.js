@@ -33,8 +33,8 @@ camera.position.z = 2;
 
 // game logic
 var update = function(){
-    // sphere.rotation.x += 0.00;
-    // sphere.rotation.y += .01;
+    sphere.rotation.x += 0.00;
+    sphere.rotation.y += .01;
 };
 
 // draw scene
