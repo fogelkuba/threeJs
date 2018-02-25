@@ -17,6 +17,16 @@ window.addEventListener('resize', ()=> {
 //controls
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
+//loaders
+// var loader = new THREE.ObjectLoader();
+// loader.load(
+//         // 'models/Head.json',
+//         'models/skull.json',
+//         function (object){
+//             scene.add(object)
+//         }
+// );
+
 // create shape
 var geometry = new THREE.CubeGeometry(0.5, 0.5, 0.5);
 
@@ -79,8 +89,7 @@ scene.add(cube);
 var floorGeometry = new THREE.CubeGeometry(5, 2, 5);
 var floorMaterial = new THREE.MeshPhongMaterial({
     map: new THREE.TextureLoader().load('images/wood.jpg'),
-    side: THREE.DoubleSide
-});
+    side: THREE.DoubleSide});
 var floor = new THREE.Mesh(floorGeometry, floorMaterial);
 scene.add(floor)
 floor.position.y = 0.75;
@@ -104,14 +113,14 @@ var directionalLight = new THREE.DirectionalLight (0xffffff, 1);
 directionalLight.position.set(0,1,0);
 scene.add(directionalLight);
 
-var spotLight = new THREE.SpotLight (0xffffff, 2);
+var spotLight = new THREE.SpotLight (0xffffff, 0.5);
 directionalLight.position.set(0,0.1,0);
 scene.add(spotLight);
 
 // game logic
 var update = function(){
     // cube.rotation.x += 0.00;
-    // cube.rotation.y += .01;
+    cube.rotation.y += .01;
 
     var time = Date.now() * 0.005;
     // light1.position.x = Math.sin(time * 0.7) * 30;
