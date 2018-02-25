@@ -73,21 +73,58 @@ var cubeMaterials = [
 //         wireframe: false
 //     })
 var material = new THREE.MeshFaceMaterial(cubeMaterials)
-
-
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
+
+var floorGeometry = new THREE.CubeGeometry(5, 2, 5);
+var floorMaterial = new THREE.MeshPhongMaterial({
+    map: new THREE.TextureLoader().load('images/wood.jpg'),
+    side: THREE.DoubleSide
+});
+var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+scene.add(floor)
+floor.position.y = 0.75;
 
 camera.position.z = 1;
 
 // light
-var ambientLight = new THREE.AmbientLight( 0xffffff, 2.0);
+var ambientLight = new THREE.AmbientLight( 0xffffff, .5);
 scene.add(ambientLight)
+
+var light1 = new THREE.PointLight(0xff0000, 4.0, 50);
+// scene.add(light1)
+
+var light2 = new THREE.PointLight(0x00ff00, 1.7, 50);
+// scene.add(light2)
+
+var light3 = new THREE.PointLight(0x0000ff, 3.3, 50);
+// scene.add(light3)
+
+var directionalLight = new THREE.DirectionalLight (0xffffff, 1);
+directionalLight.position.set(0,1,0);
+scene.add(directionalLight);
+
+var spotLight = new THREE.SpotLight (0xffffff, 2);
+directionalLight.position.set(0,0.1,0);
+scene.add(spotLight);
 
 // game logic
 var update = function(){
-    cube.rotation.x += 0.00;
-    cube.rotation.y += .01;
+    // cube.rotation.x += 0.00;
+    // cube.rotation.y += .01;
+
+    var time = Date.now() * 0.005;
+    // light1.position.x = Math.sin(time * 0.7) * 30;
+    // light1.position.y = Math.cos(time * 0.5) * 40;
+    // light1.position.z = Math.cos(time * 0.3) * 30;
+    //
+    // light2.position.x = Math.cos(time * 0.3) * 30;
+    // light2.position.y = Math.sin(time * 0.5) * 40;
+    // light2.position.z = Math.sin(time * 0.7) * 30;
+    //
+    // light3.position.x = Math.sin(time * 0.7) * 30;
+    // light3.position.y = Math.cos(time * 0.3) * 40;
+    // light3.position.z = Math.sin(time * 0.5) * 30;
 };
 
 // draw scene
