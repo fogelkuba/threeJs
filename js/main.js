@@ -8,10 +8,14 @@ document.body.appendChild(renderer.domElement);
 window.addEventListener('resize', ()=> {
     var width = window.innerWidth;
     var height = window.innerHeight;
+
     renderer.setSize(width, height);
     camera.aspect= width / height;
     camera.updateProjectionMatrix();
 })
+
+//controls
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // create shape
 var geometry = new THREE.SphereGeometry(1, 25, 25);
@@ -29,8 +33,8 @@ camera.position.z = 2;
 
 // game logic
 var update = function(){
-    sphere.rotation.x += 0.00;
-    sphere.rotation.y += .01;
+    // sphere.rotation.x += 0.00;
+    // sphere.rotation.y += .01;
 };
 
 // draw scene
